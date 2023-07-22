@@ -1,6 +1,9 @@
 import { Sidebar } from '@/components/Sidebar';
 import './globals.css';
 import { Readex_Pro } from 'next/font/google';
+import { SessionProvider } from '@/components/SessionProvider';
+import { getServerSession } from 'next-auth/next';
+import { Login } from '@/components/Login';
 
 const readexPro = Readex_Pro({ subsets: ['latin'] });
 
@@ -9,14 +12,32 @@ export const metadata = {
   description: 'ChatGPT Clone',
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await getServerSession();
+
+  if (!session) {
+    return (
+      <html lang="en">
+        <body
+          className={`${readexPro.className} bg-zinc-900 text-zinc-50 flex`}
+        >
+          <SessionProvider session={session}>
+            <Login />
+          </SessionProvider>
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en">
       <body className={`${readexPro.className} bg-zinc-900 text-zinc-50 flex`}>
-        {/* Sidebar */}
-        <Sidebar />
-        {/* ClientProvider */}
-        <main className="w-full">{children}</main>
+        <SessionProvider session={session}>
+          {/* Sidebar */}
+          <Sidebar />
+          {/* ClientProvider */}
+          <main className="w-full">{children}</main>
+        </SessionProvider>
       </body>
     </html>
   );
