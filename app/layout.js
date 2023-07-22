@@ -11,7 +11,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={readexPro.className}>{children}</body>
+      <body className={`${readexPro.className} bg-zinc-900 text-zinc-50`}>
+        {/* Sidebar */}
+        {/* ClientProvider */}
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
