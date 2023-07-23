@@ -1,14 +1,12 @@
 'use client';
 
-import { AvatarImage } from './ui/Avatar';
-import {
-  EllipsisHorizontalIcon,
-  ArrowUpRightIcon,
-} from '@heroicons/react/24/solid';
+import { AvatarImage } from '@/components/ui/Avatar';
+import { ArrowUpRightIcon } from '@heroicons/react/24/solid';
 import { signOut, useSession } from 'next-auth/react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
 import { Icons } from '@/components/Icons';
+import Link from 'next/link';
 
 function UserButton() {
   const { data: session } = useSession();
@@ -47,10 +45,14 @@ function UserButton() {
               <Dialog.Description className="max-w-xs text-sm opacity-80">
                 Consider leaving a star on GitHub if you find this useful!
               </Dialog.Description>
-              <button className="flex items-center justify-center w-full h-10 gap-2 px-4 transition-colors border rounded-lg border-zinc-50 hover:border-violet-500">
+              <Link
+                href={'https://github.com/andreasgylche/chatgpt-app'}
+                target="_blank"
+                className="flex items-center justify-center w-full h-10 gap-2 px-4 transition-colors border rounded-lg border-zinc-50 hover:border-violet-500"
+              >
                 <Icons.github color="#fafafa" />
                 <span>View source code</span>
-              </button>
+              </Link>
               <button
                 onClick={() => signOut()}
                 className="flex items-center justify-center w-full h-10 gap-2 px-4 transition-colors border rounded-lg border-zinc-50 hover:border-red-500"
