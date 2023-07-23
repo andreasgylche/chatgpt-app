@@ -1,8 +1,8 @@
-import { Sidebar } from '@/components/Sidebar';
 import './globals.css';
 import { Readex_Pro } from 'next/font/google';
-import { SessionProvider } from '@/components/SessionProvider';
 import { getServerSession } from 'next-auth/next';
+import { Sidebar } from '@/components/Sidebar';
+import { SessionProvider } from '@/components/SessionProvider';
 import { Login } from '@/components/Login';
 
 const readexPro = Readex_Pro({ subsets: ['latin'] });
