@@ -53,10 +53,10 @@ function ChatInput({ chatId }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        prompt,
-        model,
-        chatId,
-        session,
+        prompt: prompt,
+        model: model,
+        chatId: chatId,
+        session: session,
       }),
     }).then(() => {
       e.target.reset();
