@@ -3,7 +3,7 @@ import { query } from '@/lib/utils';
 import admin from 'firebase-admin';
 import { NextResponse } from 'next/server';
 
-export async function POST(request, response) {
+export async function POST(request) {
   const { prompt, model, chatId, session } = await request.json();
 
   if (!prompt) {
