@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth/next';
 import { Sidebar } from '@/components/Sidebar';
 import { SessionProvider } from '@/components/SessionProvider';
 import { Login } from '@/components/Login';
+import { ClientProvider } from '@/components/ClientProvider';
 
 const readexPro = Readex_Pro({ subsets: ['latin'] });
 
@@ -19,7 +20,7 @@ export default async function RootLayout({ children }) {
     return (
       <html lang="en">
         <body
-          className={`${readexPro.className} bg-zinc-900 text-zinc-50 flex`}
+          className={`${readexPro.className} bg-zinc-900 text-zinc-50 flex selection:bg-violet-500`}
         >
           <SessionProvider session={session}>
             <Login />
@@ -31,11 +32,13 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${readexPro.className} bg-zinc-900 text-zinc-50 flex`}>
+      <body
+        className={`${readexPro.className} bg-zinc-900 text-zinc-50 flex selection:bg-violet-500`}
+      >
         <SessionProvider session={session}>
           {/* Sidebar */}
           <Sidebar />
-          {/* ClientProvider */}
+          <ClientProvider />
           <main className="w-full">{children}</main>
         </SessionProvider>
       </body>
